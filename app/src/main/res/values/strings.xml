@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Github</string>
+    <string name="dummyname">dummyname</string>
+    <string name="dummyloc">dummyloc</string>
+    <string name="dummycompany">dummycompany</string>
+
+</resources>
