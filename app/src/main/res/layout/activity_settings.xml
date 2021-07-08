@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/settings"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".activity.SettingsActivity">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:id="@+id/alarm_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/ic_access_alarm"
+            android:contentDescription="@string/alarm_icon" />
+
+            <TextView
+                android:id="@+id/set_alarm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/set_alarm"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:layout_marginStart="5dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.8"/>
+
+        <Switch
+            android:id="@+id/alarm_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/language_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/language_icon"
+            app:srcCompat="@drawable/ic_language" />
+
+        <TextView
+            android:id="@+id/tv_language"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/change_language"
+            android:layout_gravity="center"
+            android:layout_weight="0.8"/>
+
+        <Button
+            android:id="@+id/button_language"
+            android:layout_width="100dp"
+            android:layout_height="45dp"
+            android:text="@string/change"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Github</string>
+    <string name="name">name</string>
+    <string name="search">search</string>
+    <string name="settings">Settings</string>
+    <string name="search_hint">Search</string>
+    <string name="following">Following</string>
+    <string name="followers">Followers</string>
+    <string name="repository">Repository</string>
+    <string name="username">username</string>
+    <string name="tab_1">Followers</string>
+    <string name="tab_2">Following</string>
+    <string name="user">Github User</string>
+    <string name="profil">User Profile</string>
+    <string name="avatar">avatar</string>
+    <string name="arrow">arrow</string>
+    <string name="set_alarm">Set Alarm</string>
+    <string name="alarm_icon">alarm_icon</string>
+    <string name="language_icon">language_icon</string>
+    <string name="change_language">Change Language</string>
+    <string name="change">Change</string>
+    <string name="favorite_user">favorite user</string>
+    <string name="user_favorite">User Favorite</string>
+    <string name="buttonfav">buttonFav</string>
+</resources>
