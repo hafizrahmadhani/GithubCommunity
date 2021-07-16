@@ -12,14 +12,14 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.hafizrahmadhani.github.datamodel.DataModelUser
 import com.hafizrahmadhani.github.R
-import com.hafizrahmadhani.github.viewmodel.ViewModelDetail
 import com.hafizrahmadhani.github.adapter.PagerAdapter
 import com.hafizrahmadhani.github.database.DatabaseContract
 import com.hafizrahmadhani.github.database.DatabaseContract.FavColumns.Companion.CONTENT_URI
 import com.hafizrahmadhani.github.database.FavoriteHelper
 import com.hafizrahmadhani.github.databinding.ActivityUserDetailsBinding
+import com.hafizrahmadhani.github.datamodel.DataModelUser
+import com.hafizrahmadhani.github.viewmodel.ViewModelDetail
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_user_details.*
 import kotlinx.android.synthetic.main.user_item.*
@@ -49,9 +49,12 @@ class UserDetailsActivity : AppCompatActivity() {
         val pagerAdapter = PagerAdapter(this)
         pagerAdapter.username = username
         view_pager.adapter = pagerAdapter
-        TabLayoutMediator(tabs, viewPager) { tab, position ->
-            tab.text = resources.getString(tabTitles[position])
-        }.attach()
+
+        binding.apply {
+            TabLayoutMediator(tabs, viewPager) { tab, position ->
+                tab.text = resources.getString(tabTitles[position])
+            }.attach()
+        }
 
         contentValues = ContentValues()
 
