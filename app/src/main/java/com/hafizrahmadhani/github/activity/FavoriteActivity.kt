@@ -86,7 +86,6 @@ class FavoriteActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 
     private fun callErrorMsg() {
