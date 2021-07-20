@@ -2,30 +2,33 @@ package com.hafizrahmadhani.github.activity
 
 import android.content.Intent
 import android.database.ContentObserver
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hafizrahmadhani.github.R
 import com.hafizrahmadhani.github.adapter.FavoriteAdapter
 import com.hafizrahmadhani.github.database.DatabaseContract.FavColumns.Companion.CONTENT_URI
 import com.hafizrahmadhani.github.database.FavoriteHelper
 import com.hafizrahmadhani.github.database.MappingHelper
+import com.hafizrahmadhani.github.databinding.ActivityFavoriteBinding
 import com.hafizrahmadhani.github.datamodel.DataModelFavUser
 import com.loopj.android.http.AsyncHttpClient.log
 import kotlinx.android.synthetic.main.activity_favorite.*
 
 class FavoriteActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityFavoriteBinding
+
     private val listFavorite = ArrayList<DataModelFavUser>()
     private lateinit var favoriteHelper: FavoriteHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_favorite)
+        binding = ActivityFavoriteBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         favoriteHelper = FavoriteHelper(applicationContext)
 
@@ -35,7 +38,7 @@ class FavoriteActivity : AppCompatActivity() {
         handlerThread.start()
         val handler = Handler(handlerThread.looper)
 
-        val observer = object : ContentObserver(handler){
+        val observer = object : ContentObserver(handler) {
             override fun onChange(selfChange: Boolean) {
                 recyclerviewFavorite()
             }
@@ -49,10 +52,10 @@ class FavoriteActivity : AppCompatActivity() {
 
     private fun recyclerviewFavorite() {
         takeData()
-        rv_userFav.layoutManager = LinearLayoutManager(this)
+        binding.rvUserFav.layoutManager = LinearLayoutManager(this)
 
         val favoriteAdapter = FavoriteAdapter(listFavorite)
-        rv_userFav.adapter = favoriteAdapter
+        binding.rvUserFav.adapter = favoriteAdapter
 
         favoriteAdapter.setOnItemClickCallback(object : FavoriteAdapter.OnItemClickCallback{
             override fun onItemClicked(data: DataModelFavUser) {
@@ -65,23 +68,25 @@ class FavoriteActivity : AppCompatActivity() {
         log.e(favoriteAdapter.toString(), "terjadi kesalahan")
     }
 
-    private fun takeData(){
+    private fun takeData() {
         val query = contentResolver.query(CONTENT_URI, null, null, null, null)
         val mappingHelper = MappingHelper.mapCursorToArrayList(query)
 
-        if(query != null){
-            if(query.count > 0){
-                progress_bar.visibility = View.GONE
+        binding.apply {
+            if (query != null) {
+                if (query.count > 0) {
+                    progressBar.visibility = View.GONE
 
-                listFavorite.addAll(mappingHelper)
-            }
-            else{
-                if(query.count == 0){
-                    progress_bar.visibility = View.GONE
+                    listFavorite.addAll(mappingHelper)
+                } else {
+                    if (query.count == 0) {
+                        progressBar.visibility = View.GONE
+                    }
+                    callErrorMsg()
                 }
-                callErrorMsg()
             }
         }
+
     }
 
     private fun callErrorMsg() {
